@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  const foods = await Food.find().sort("name");
+  const foods = await Food.find().populate("comment", "comment -_id");
   res.send(foods);
 });
 
