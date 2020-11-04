@@ -24,6 +24,5 @@ function validateComment(comment) {
   return Joi.validate(comment, schema);
 }
 
-exports.commentSchema = commentSchema;
 exports.Comment = Comment;
 exports.validate = validateComment;

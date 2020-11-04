@@ -1,6 +1,5 @@
 const Joi = require("joi");
 const mongoose = require("mongoose");
-const { commentSchema } = require("./comment");
 
 const Food = mongoose.model(
   "Food",
@@ -13,8 +12,8 @@ const Food = mongoose.model(
       maxlength: 255,
     },
     comment: {
-      type: commentSchema,
-      required: true,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Comment",
     },
     image: {
       type: String,
