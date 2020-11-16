@@ -1,16 +1,23 @@
+const config = require("config");
 const Joi = require("joi");
 Joi.objectId = require("joi-objectid")(Joi);
 const mongoose = require("mongoose");
-const comment = require("./routes/comment");
-const food = require("./routes/foods");
 const users = require("./routes/users");
 const express = require("express");
 const app = express();
+const food = require("./routes/foods");
+const comment = require("./routes/comment");
+if (!config.get("jwtPrivateKey")) {
+  console.log("FATAL ERROR : jwtPrivateKey is not defined");
+  process.exit(1);
+}
 // movie food
 mongoose
-  .connect("mongodb://localhost/vidly", {
+  .connect("mongodb://localhost/food", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
   })
   .then(() => console.log("Connected to MongoDB..."))
   .catch((err) => console.error("Could not connect to MongoDB..."));
