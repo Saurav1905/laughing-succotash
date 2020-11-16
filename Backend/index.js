@@ -12,8 +12,9 @@ if (!config.get("jwtPrivateKey")) {
   process.exit(1);
 }
 // movie food
+const connection_url = `mongodb+srv://admin:mSF89AvLCZ9Lfl8Z@cluster0.lyfnv.mongodb.net/food?retryWrites=true&w=majority`;
 mongoose
-  .connect("mongodb://localhost/food", {
+  .connect(connection_url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
@@ -29,3 +30,5 @@ app.use("/api/users", users);
 
 const port = process.env.PORT || 9000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
+
+// mSF89AvLCZ9Lfl8Z
